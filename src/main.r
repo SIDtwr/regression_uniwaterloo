@@ -133,3 +133,4 @@ new.data <- data.frame(
   INDEX = c(1, 30, 60, 90, 120)
 )
 predict(poly_reg4_log, newdata = new.data)
+
