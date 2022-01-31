@@ -1,13 +1,53 @@
 #install.packages("remotes")
 #install.packages("RCurl")
 #install.packages("devtools")
+#install.packages("tidyverse")
+#install.packages("caret")
+install.packages("ggplot2")
 
-download.file("https://raw.githubusercontent.com/SIDtwr/regression_uniwaterloo/main/COVID-19%20daily%20case%20counts%20by%20reported%20date%20in%20Ontario%20-%20December%201%2C%202021%20to%20January%2027%2C%202022.csv",destfile="/tmp/reviews.csv",method="libcurl")
-data <- read.csv("/tmp/reviews.csv")
+#library(tidyverse)
+#library(caret)
+#theme_set(theme_classic())
+
+library("ggplot2")
+
+# Download csv file
+download.file("https://raw.githubusercontent.com/SIDtwr/regression_uniwaterloo/main/data/covid_data.csv",destfile="/tmp/covid_data.csv",method="libcurl")
+
+data <- read.csv("/tmp/covid_data.csv")
 print(data)
 
-## Prepare taringing data 
-## Split into traning and testing data
+## Visulize Dataset
+ggplot(data) + 
+  geom_point(data(Date, Cases),size=3) + 
+  theme_bw()
+
+## Prepare training data & splitting into training and testing dataset
+
+# Set a seed value for reproducible results
+set.seed(70)
+# Split the data
+ind <- sample(x = nrow(data), size = floor(0.75 * nrow(data))
+# Store the value in train and test dataframes
+train <- data[ind,]
+test <- data[-ind,]
+
+# Generate the model
+model_one <- dynlm(Cases ~ Date, data = train)
+model_two <- dynlm(Cases ~ Date + I(Date^2), data = train)
+model_three <- dynlm(Cases ~ Date + I(Date^2) + I(Date^3), data = train)
+model_four <- dynlm(Cases ~ Date + I(Date^2) + I(Date^3) + I(Date^4), data = train)
+
+
+## Test 
+# Load the data
+#data("Boston", package = "MASS")
+# Split the data into training and test set
+#set.seed(123)
+#training.samples <- Boston$medv %>%
+  #createDataPartition(p = 0.8, list = FALSE)
+#train.data  <- Boston[training.samples, ]
+#test.data <- Boston[-training.samples, ]
 
 
 
