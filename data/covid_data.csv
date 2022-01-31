@@ -1,4 +1,4 @@
-Date (Reported),Cases,"Rate per 100,000",Cases - 7 day rolling average
+Date,Cases,"Rate per 100,000",Cases - 7 day rolling average
 12/1/2021,"1,041",7.1,838
 12/2/2021,"1,094",7.4,880
 12/3/2021,"1,141",7.7,895
