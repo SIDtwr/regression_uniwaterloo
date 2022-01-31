@@ -38,6 +38,9 @@ model_two <- dynlm(Cases ~ Date + I(Date^2), data = train)
 model_three <- dynlm(Cases ~ Date + I(Date^2) + I(Date^3), data = train)
 model_four <- dynlm(Cases ~ Date + I(Date^2) + I(Date^3) + I(Date^4), data = train)
 
+# Website links
+# https://www.pluralsight.com/guides/polynomial-functions-analysis-with-r
+# http://www.sthda.com/english/articles/40-regression-analysis/162-nonlinear-regression-essentials-in-r-polynomial-and-spline-regression-models/
 
 ## Test 
 # Load the data
